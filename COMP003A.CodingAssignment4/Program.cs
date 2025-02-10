@@ -12,7 +12,8 @@ namespace COMP003A.CodingAssignment4
             int[] storage = new int[10];
             int number = 0;
 
-            while (true)
+            bool exit = false;
+            while (!exit)
             {
                 Console.WriteLine("1. Add a product");
                 Console.WriteLine("2. Update Product Quantity");
@@ -21,16 +22,16 @@ namespace COMP003A.CodingAssignment4
                 Console.Write("Enter your choice: ");
                 number = int.Parse(Console.ReadLine());
 
-                try
-                {
-                    number = Convert.ToInt32(Console.ReadLine());
-                }
-                catch
-                {
-                    Console.WriteLine();
-                }
+                //try
+                //{
+                //    number = Convert.ToInt32(Console.ReadLine());
+                //}
+                //catch
+                //{
+                //    Console.WriteLine();
+                //}
 
-                number = 1;
+
                 if (number == 1)
                 {
                     int index = Array.FindIndex(products, name => name == null);
@@ -49,14 +50,52 @@ namespace COMP003A.CodingAssignment4
                 }
                 else if (number == 2)
                 {
-                    int index = Array.IndexOf(products);
+                    Console.WriteLine("Enter Product Name: ");
+                    string updateProduct = Console.ReadLine();
+                    int indexUpdate = Array.FindIndex(products, product => product == updateProduct);
+
+                    if (indexUpdate != -1)
+                    {
+                        Console.Write($"New quantity for {updateProduct}: ");
+                        int updateQuantity = int.Parse(Console.ReadLine());
+
+                        storage[indexUpdate] = updateQuantity;
+                        Console.WriteLine($"New quantity of {updateProduct} updated to {updateQuantity} ");
+                    }
+
                 }
                 else if (number == 3)
                 {
+                    double totalQuantity = 0;
+
+                    Console.WriteLine("Inventory Summary: ");
                     for (int i = 0; i < storage.Length; i++)
                     {
-                        Console.WriteLine($"");
+                        if (products[i] != null)
+                        {
+                            Console.WriteLine($"{products[i]}: {storage[i]}");
+                            totalQuantity += storage[i];
+
+                        }
+
+
                     }
+
+                    int totalProducts = products.Count(name => !string.IsNullOrEmpty(name));
+                    double averageQuantity = storage.Average();
+
+                    Console.WriteLine($"Total Products: {totalProducts}");
+                    Console.WriteLine($"Total Quantity: {totalQuantity}");
+                    Console.WriteLine($"Average Quantity: {averageQuantity}");
+                }
+                else if (number == 4)
+                {
+                    Console.WriteLine("Program Ending!");
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine("Unknown Input. Please try again!");
                 }
             }
         }
