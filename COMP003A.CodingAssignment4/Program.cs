@@ -35,7 +35,7 @@ namespace COMP003A.CodingAssignment4
                 if (number == 1)
                 {
                     int index = Array.FindIndex(products, name => name == null);
-                    Console.WriteLine("Product name: ");
+                    Console.WriteLine("\nProduct name: ");
                     products[index] = Console.ReadLine();
 
                     Console.WriteLine("Product Quantity: ");
@@ -50,7 +50,7 @@ namespace COMP003A.CodingAssignment4
                 }
                 else if (number == 2)
                 {
-                    Console.WriteLine("Enter Product Name: ");
+                    Console.WriteLine("\nEnter Product Name: ");
                     string updateProduct = Console.ReadLine();
                     int indexUpdate = Array.FindIndex(products, product => product == updateProduct);
 
@@ -68,7 +68,7 @@ namespace COMP003A.CodingAssignment4
                 {
                     double totalQuantity = 0;
 
-                    Console.WriteLine("Inventory Summary: ");
+                    Console.WriteLine("\nInventory Summary: ");
                     for (int i = 0; i < storage.Length; i++)
                     {
                         if (products[i] != null)
@@ -90,12 +90,12 @@ namespace COMP003A.CodingAssignment4
                 }
                 else if (number == 4)
                 {
-                    Console.WriteLine("Program Ending!");
+                    Console.WriteLine("\nProgram Ending!");
                     return;
                 }
                 else
                 {
-                    Console.WriteLine("Unknown Input. Please try again!");
+                    Console.WriteLine("\nUnknown Input. Please try again!");
                 }
             }
         }
